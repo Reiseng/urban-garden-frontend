@@ -1,0 +1,100 @@
+.Dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #197e1d;
+    color: white;
+}
+.left {
+    display: flex;
+    align-items: center;
+}
+.left h1 {
+    font-size: 1.5em;
+}
+.left img{
+    margin: 10px;
+}
+.right {
+    align-items: center;
+    margin-right: 20px;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+section {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 80%;
+    max-width: auto;
+}
+.Plot-Info{
+    display: flex;
+    flex-direction: grid;
+    align-items: center;
+}
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px;
+}
+.crops-container{
+    display: grid;
+    gap: 16px;
+}
+.crops-1 {
+    grid-template-columns: 1fr;
+}
+.crops-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.crops-3,
+.crops-4,
+.crops-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.devices-container {
+    display: grid;
+    gap: 16px;
+}
+.devices-1 {
+    grid-template-columns: 1fr;
+}
+.devices-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.devices-3,
+.devices-4,
+.devices-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.sensors-container {
+    display: grid;
+    gap: 16px;
+}
+.sensors-1 {
+    grid-template-columns: 1fr;
+}
+.sensors-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.sensors-3,
+.sensors-4,
+.sensors-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+button {
+    padding: 10px 20px;
+    background-color: #197e1d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
