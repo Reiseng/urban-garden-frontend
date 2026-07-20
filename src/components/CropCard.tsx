@@ -10,8 +10,8 @@ interface CropCardProps {
 function CropCard({ compact, name, plantingDate, status }: CropCardProps) {
     return (
         <div className={`CropCard ${compact ? "compact" : ""}`}>
-            <div className="image-container">
-                <img src="/leaf.png" alt="Cultivo" />
+            <div className="image-crop-container">
+                <img src={`/${name}.png`} alt={name} />
             </div>
             <div className="info-container">
                 <h3>{name}</h3>

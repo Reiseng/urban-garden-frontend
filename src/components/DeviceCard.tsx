@@ -12,8 +12,8 @@ function DeviceCard({ compact, name, status, id, lastConnection }: DeviceCardPro
     return (
             <div className={`DeviceCard ${compact ? "compact" : ""}`}>
             <div className="main-info">
-                <div className="image-container">
-                    <img src="/leaf.png" alt="Dispositivo" />
+                <div className="image-device-container">
+                    <img src="/procesador.png" alt="Dispositivo" />
                 </div>
                 <div className="info-container">
                     <h3>{name}</h3>

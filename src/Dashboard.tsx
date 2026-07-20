@@ -64,7 +64,7 @@ function Dashboard() {
                         <CropCard
                             key={crop.id}
                             compact={(plotInfo?.activeCrops?.length ?? 0) >= 4}
-                            name={`Cultivo ${crop.cropTypeId}`}
+                            name={`Cultivo ${crop.cropType?.name}`}
                             plantingDate={crop.plantedAt}
                             status={crop.state}
                         />

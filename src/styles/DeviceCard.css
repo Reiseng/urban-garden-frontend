@@ -20,6 +20,13 @@
     gap: 20px;
     margin-left: 20px;
 }
+.image-device-container {
+    margin: 10px;
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
 .DeviceCard.compact .main-info {
     flex-direction: column;
     gap: 0px;

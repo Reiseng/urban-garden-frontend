@@ -25,7 +25,7 @@ function PlotInfoCard({
     return (
         <section className ="Plot-Info">
             <div className ="image-container">
-                <img src="/leaf.png" alt="leaf" />
+                <img src="/parcela.jpg" alt="img" />
             </div>
 
             <div className="container-info">

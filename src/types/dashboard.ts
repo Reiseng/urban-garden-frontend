@@ -24,10 +24,13 @@ export interface PlotInfo {
     activeCrops?: ActiveCrop[];
     devices: Device[];
 }
-
+export interface CropType {
+    id: number;
+    name: string;
+}
 export interface ActiveCrop {
     id: number;
-    cropTypeId: number;
+    cropType: CropType;
     plantedAt: string;
     state: string;
 }

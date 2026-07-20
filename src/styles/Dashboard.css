@@ -45,51 +45,7 @@ section {
     align-items: center;
     margin: 16px;
 }
-.crops-container{
-    display: grid;
-    gap: 16px;
-}
-.crops-1 {
-    grid-template-columns: 1fr;
-}
-.crops-2 {
-    grid-template-columns: 1fr 1fr;
-}
-.crops-3,
-.crops-4,
-.crops-5 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-.devices-container {
-    display: grid;
-    gap: 16px;
-}
-.devices-1 {
-    grid-template-columns: 1fr;
-}
-.devices-2 {
-    grid-template-columns: 1fr 1fr;
-}
-.devices-3,
-.devices-4,
-.devices-5 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-.sensors-container {
-    display: grid;
-    gap: 16px;
-}
-.sensors-1 {
-    grid-template-columns: 1fr;
-}
-.sensors-2 {
-    grid-template-columns: 1fr 1fr;
-}
-.sensors-3,
-.sensors-4,
-.sensors-5 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+
 button {
     padding: 10px 20px;
     background-color: #197e1d;
