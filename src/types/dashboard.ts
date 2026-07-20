@@ -5,12 +5,6 @@ export interface Device {
     lastConnection: string;
 }
 
-export interface Crop {
-    name: string;
-    plantingDate: string;
-    status: string;
-}
-
 export interface Sensor {
     deviceID: string;
     sensorName: string;
@@ -23,8 +17,17 @@ export interface Sensor {
 }
 
 export interface PlotInfo {
+    id: number;
     name: string;
-    plotName: string;
     location: string;
     area: number;
+    activeCrops?: ActiveCrop[];
+    devices: Device[];
+}
+
+export interface ActiveCrop {
+    id: number;
+    cropTypeId: number;
+    plantedAt: string;
+    state: string;
 }

@@ -38,3 +38,18 @@
 .SensorCard.compact .timestamp-info p {
     margin: 5px;
 }
+.sensors-container {
+    display: grid;
+    gap: 16px;
+}
+.sensors-1{
+    grid-template-columns: 1fr;
+}
+.sensors-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.sensors-3,
+.sensors-4,
+.sensors-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

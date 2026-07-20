@@ -1,35 +1,48 @@
 import { useEffect, useState } from "react";
-import type { Sensor } from "../types/dashboard";
+import type { Device, Sensor } from "../types/dashboard";
+import { getEnvironmentSensor } from "../services/EnviromentSensorService";
 
-export function useEnvironmentSensors() {
+export function useEnvironmentSensors(devices: Device[]) {
     const [sensors, setSensors] = useState<Sensor[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [noData, setNoData] = useState(false);
 
     useEffect(() => {
         async function load() {
 
             try {
-                setSensors([
+                const sensors = await Promise.all(
+                    devices.map(d => getEnvironmentSensor(d.id))
+                );
+            const availableSensors = sensors.filter(sensor => sensor !== null);
+
+            if (availableSensors.length === 0) {
+                setNoData(true);
+                return;
+            }
+            setSensors(
+                sensors.flatMap(sensor => [
                     {
-                        deviceID: "123456",
+                        deviceID: sensor.deviceID,
                         sensorName: "Temperatura",
-                        value: 25,
+                        value: sensor.temperature,
                         unit: "°C",
-                        difference: 1,
-                        timestamp: "01/02/2024",
+                        difference: 0,
+                        timestamp: sensor.timestamp,
                         imagePath: "/temperature.png"
                     },
                     {
-                        deviceID: "123456",
+                        deviceID: sensor.deviceID,
                         sensorName: "Humedad",
-                        value: 60,
+                        value: sensor.humidity,
                         unit: "%",
-                        difference: -3,
-                        timestamp: "01/02/2024",
+                        difference: 0,
+                        timestamp: sensor.timestamp,
                         imagePath: "/humidity.png"
                     }
-                ]);
+                ])
+            );
             }
             catch {
                 setError(true);
@@ -40,11 +53,12 @@ export function useEnvironmentSensors() {
         }
 
         load();
-    }, []);
+    }, [devices]);
 
     return {
         sensors,
         loading,
         error
+        , noData
     };
 }

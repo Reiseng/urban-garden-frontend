@@ -1,16 +1,26 @@
 import "../styles/PlotInfoCard.css";
+import type { Device } from "../types/dashboard";
 interface PlotInfoCardProps {
+    id: number;
     name: string;
-    plotName: string;
     location: string;
     area: number;
+    ActiveCrop?: {
+        id: number;
+        cropTypeId: number;
+        plantedAt: string;
+        state: string;
+    };
+    devices: Device[];
 }
 
 function PlotInfoCard({
+    id,
     name,
-    plotName,
     location,
-    area
+    area,
+    ActiveCrop,
+    devices
 }: PlotInfoCardProps) {
     return (
         <section className ="Plot-Info">
@@ -20,7 +30,6 @@ function PlotInfoCard({
 
             <div className="container-info">
                 <h2>{name}</h2>
-                <h3>{plotName}</h3>
 
                 <p>Ubicación: {location}</p>
                 <p>Área: {area}m²</p>

@@ -38,3 +38,18 @@
 .DeviceCard.compact .connection-info p {
     margin: 5px;
 }
+.devices-container {
+    display: grid;
+    gap: 16px;
+}
+.devices-1{
+    grid-template-columns: 1fr;
+}
+.devices-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.devices-3,
+.devices-4,
+.devices-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

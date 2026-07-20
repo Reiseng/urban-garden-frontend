@@ -22,3 +22,18 @@
     align-items: center;
     margin: 10px;
 }
+.crops-container {
+    display: grid;
+    gap: 16px;
+}
+.crops-1{
+    grid-template-columns: 1fr;
+}
+.crops-2 {
+    grid-template-columns: 1fr 1fr;
+}
+.crops-3,
+.crops-4,
+.crops-5 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

@@ -4,31 +4,25 @@ import DeviceCard from "./components/DeviceCard";
 import SensorCard from "./components/SensorCard";
 import PlotInfoCard from "./components/PlotInfoCard";
 import DataState from "./components/DataState";
-import { useCrops } from "./hooks/useCrops";
-import { useDevices } from "./hooks/useDevices";
 import { useEnvironmentSensors } from "./hooks/useEnvironmentSensors";
 import { useSoilSensors } from "./hooks/useSoilSensors";
 import { usePlots } from "./hooks/usePlots";
 
 function Dashboard() {
 
-    const { plotInfo, loading: loadingPlot, error: errorPlot } = usePlots();
-
-    const { devices, loading: loadingDevices, error: errorDevices } = useDevices();
-
-    const { crops, loading: loadingCrops, error: errorCrops } = useCrops();
+    const { plotInfo, loading: loading, error: error } = usePlots();
 
     const {
         sensors: environmentSensors,
         loading: loadingEnvironment,
         error: errorEnvironment
-    } = useEnvironmentSensors();
+    } = useEnvironmentSensors(plotInfo?.devices ?? []);
 
     const {
         sensors: soilSensors,
         loading: loadingSoil,
         error: errorSoil
-    } = useSoilSensors();
+    } = useSoilSensors(plotInfo?.devices ?? []);
 
     return (
         <>
@@ -46,8 +40,8 @@ function Dashboard() {
             <main>
 
                 <DataState
-                    loading={loadingPlot}
-                    error={errorPlot}
+                    loading={loading}
+                    error={error}
                     isEmpty={plotInfo === null}
                     emptyMessage="No hay información de la parcela."
                 >
@@ -58,54 +52,57 @@ function Dashboard() {
                 <section>
 
                     <h2>Cultivos</h2>
+                    <div className={`crops-container crops-${plotInfo?.activeCrops?.length ?? 0}`}>
 
                     <DataState
-                        loading={loadingCrops}
-                        error={errorCrops}
-                        isEmpty={crops.length === 0}
-                        emptyMessage="No hay cultivos."
+                        loading={loading}
+                        error={error}
+                        isEmpty={!plotInfo?.activeCrops || plotInfo.activeCrops.length === 0}
+                        emptyMessage="No hay cultivos activos."
                     >
-                        {crops.map(crop => (
-                            <CropCard
-                                key={crop.name}
-                                compact={crops.length >= 4}
-                                {...crop}
-                            />
-                        ))}
+                    {plotInfo?.activeCrops?.map(crop => (
+                        <CropCard
+                            key={crop.id}
+                            compact={(plotInfo?.activeCrops?.length ?? 0) >= 4}
+                            name={`Cultivo ${crop.cropTypeId}`}
+                            plantingDate={crop.plantedAt}
+                            status={crop.state}
+                        />
+                    ))}
                     </DataState>
+                    </div>
 
                 </section>
-
                 <section>
 
                     <h2>Dispositivos</h2>
-
+                    <div className={`devices-container devices-${plotInfo?.devices?.length ?? 0}`}>
                     <DataState
-                        loading={loadingDevices}
-                        error={errorDevices}
-                        isEmpty={devices.length === 0}
+                        loading={loading}
+                        error={error}
+                        isEmpty={!plotInfo?.devices || plotInfo.devices.length === 0}
                         emptyMessage="No hay dispositivos."
                     >
-                        {devices.map(device => (
+                        {plotInfo?.devices.map(device => (
                             <DeviceCard
                                 key={device.id}
-                                compact={devices.length >= 4}
+                                compact={(plotInfo?.devices?.length ?? 0) >= 4}
                                 {...device}
                             />
                         ))}
                     </DataState>
-
+                    </div>
                 </section>
 
                 <section>
-
+                
                     <h2>Sensores Ambientales</h2>
-
+                    <div className={`sensors-container sensors-${environmentSensors.length}`}>
                     <DataState
                         loading={loadingEnvironment}
                         error={errorEnvironment}
                         isEmpty={environmentSensors.length === 0}
-                        emptyMessage="No hay sensores."
+                        emptyMessage="No hay datos disponibles."
                     >
                         {environmentSensors.map(sensor => (
                             <SensorCard
@@ -115,29 +112,29 @@ function Dashboard() {
                             />
                         ))}
                     </DataState>
-
+                    </div>
                 </section>
 
-                <section>
+            <section>
 
-                    <h2>Sensores de Suelo</h2>
-
-                    <DataState
-                        loading={loadingSoil}
-                        error={errorSoil}
-                        isEmpty={soilSensors.length === 0}
-                        emptyMessage="No hay sensores."
-                    >
-                        {soilSensors.map(sensor => (
-                            <SensorCard
-                                key={`${sensor.deviceID}-${sensor.sensorIndex}`}
-                                compact={soilSensors.length >= 4}
-                                {...sensor}
-                            />
-                        ))}
-                    </DataState>
-
-                </section>
+                <h2>Sensores de Suelo</h2>
+                <div className={`sensors-container sensors-${soilSensors.length}`}>
+                <DataState
+                    loading={loadingSoil}
+                    error={errorSoil}
+                    isEmpty={soilSensors.length === 0}
+                    emptyMessage="No hay datos disponibles."
+                >
+                    {soilSensors.map(sensor => (
+                        <SensorCard
+                            key={`${sensor.deviceID}-${sensor.sensorIndex}`}
+                            compact={soilSensors.length >= 4}
+                            {...sensor}
+                        />
+                    ))}
+                </DataState>
+                </div>
+            </section>
 
             </main>
         </>
