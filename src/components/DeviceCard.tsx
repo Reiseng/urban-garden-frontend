@@ -1,4 +1,6 @@
 import "../styles/DeviceCard.css";
+import { formatLastSeen } from "../utils/deviceLastSeen.ts";
+import { getDeviceStatus } from "../utils/deviceStatus";
 
 interface DeviceCardProps {
     compact: boolean;
@@ -18,12 +20,12 @@ function DeviceCard({ compact, name, status, id, lastConnection }: DeviceCardPro
                 <div className="info-container">
                     <h3>{name}</h3>
                     <p>ID: {id}</p>
-                    <p>Estado: {status}</p>
+                    <p>Estado: {getDeviceStatus(lastConnection)}</p>
                 </div>
             </div>
             <div className="connection-info">
                 <p>Última conexión:</p>
-                <p>{lastConnection}</p>
+                <p>{formatLastSeen(lastConnection)}</p>
             </div>
         </div>
     );

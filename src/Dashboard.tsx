@@ -66,7 +66,7 @@ function Dashboard() {
                             compact={(plotInfo?.activeCrops?.length ?? 0) >= 4}
                             name={`Cultivo ${crop.cropType?.name}`}
                             plantingDate={crop.plantedAt}
-                            status={crop.state}
+                            status={crop.state as "Planted" | "Growing" | "ReadyForHarvest" | "Harvested"}
                         />
                     ))}
                     </DataState>

@@ -1,10 +1,12 @@
 import "../styles/CropCard.css";
+import { CropStatusLabels } from "../utils/cropStatus";
+import { formatDate } from "../utils/date";
 
 interface CropCardProps {
     compact: boolean;
     name: string;
     plantingDate: string;
-    status: string;
+    status: keyof typeof CropStatusLabels;
 }
 
 function CropCard({ compact, name, plantingDate, status }: CropCardProps) {
@@ -15,8 +17,8 @@ function CropCard({ compact, name, plantingDate, status }: CropCardProps) {
             </div>
             <div className="info-container">
                 <h3>{name}</h3>
-                <p>Fecha de siembra: {plantingDate}</p>
-                <p>Estado: {status}</p>
+                <p>Estado: {CropStatusLabels[status] ?? status}</p>
+                <p>Fecha de siembra: {formatDate(plantingDate)}</p>
             </div>
         </div>
     );
