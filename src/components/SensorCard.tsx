@@ -1,4 +1,6 @@
 import "../styles/SensorCard.css";
+import SensorGauge from "./SensorGauge";
+
 
 interface SensorCardProps {
     compact: boolean;
@@ -17,16 +19,28 @@ function SensorCard({
     sensorName,
     value,
     unit,
-    difference,
     timestamp,
-    imagePath,
     sensorIndex
 }: SensorCardProps) {
+    var max = 0;
+    if (unit === "%") {
+        max = 100;
+    }
+    if (unit === "RAW") {
+        max = 4096;
+    }
+    if (unit === "°C") {
+        max = 60;
+    }
     return (
         <div className={`SensorCard ${compact ? "compact" : ""}`}>
             <div className="main-info">
                 <div className="image-container">
-                    <img src={imagePath} alt={sensorName} />
+                    <SensorGauge
+                        value={value}
+                        max={max}
+                        unit={unit}
+                    />
                 </div>
 
                 <div className="info-container">
@@ -36,19 +50,7 @@ function SensorCard({
                     {sensorIndex !== undefined && (
                         <p>Sensor #{sensorIndex}</p>
                     )}
-
-                    <p>
-                        Valor: {value} {unit}
-                    </p>
                 </div>
-            </div>
-
-            <div className="difference-info">
-                {difference !== undefined && (
-                    <p>
-                        {difference.toFixed(1)} {unit} desde la última lectura.
-                    </p>
-                )}
             </div>
 
             <div className="timestamp-info">

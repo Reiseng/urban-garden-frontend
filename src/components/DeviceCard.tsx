@@ -7,10 +7,10 @@ interface DeviceCardProps {
     name: string;
     status: string;
     id: string;
-    lastConnection: string;
+    lastSeenAt: string;
 }
 
-function DeviceCard({ compact, name, status, id, lastConnection }: DeviceCardProps) {
+function DeviceCard({ compact, name, status, id, lastSeenAt }: DeviceCardProps) {
     return (
             <div className={`DeviceCard ${compact ? "compact" : ""}`}>
             <div className="main-info">
@@ -20,12 +20,12 @@ function DeviceCard({ compact, name, status, id, lastConnection }: DeviceCardPro
                 <div className="info-container">
                     <h3>{name}</h3>
                     <p>ID: {id}</p>
-                    <p>Estado: {getDeviceStatus(lastConnection)}</p>
+                    <p>Estado: {getDeviceStatus(lastSeenAt)}</p>
                 </div>
             </div>
             <div className="connection-info">
                 <p>Última conexión:</p>
-                <p>{formatLastSeen(lastConnection)}</p>
+                <p>{formatLastSeen(lastSeenAt)}</p>
             </div>
         </div>
     );

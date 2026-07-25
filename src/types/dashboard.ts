@@ -2,7 +2,7 @@ export interface Device {
     id: string;
     name: string;
     status: string;
-    lastConnection: string;
+    lastSeenAt: string;
 }
 
 export interface Sensor {
