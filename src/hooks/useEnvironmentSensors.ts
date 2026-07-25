@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Device, Sensor } from "../types/dashboard";
 import { getEnvironmentSensor } from "../services/EnviromentSensorService";
+import { formatDate } from "../utils/date";
 
 export function useEnvironmentSensors(devices: Device[]) {
     const [sensors, setSensors] = useState<Sensor[]>([]);
@@ -22,14 +23,14 @@ export function useEnvironmentSensors(devices: Device[]) {
                 return;
             }
             setSensors(
-                sensors.flatMap(sensor => [
+                availableSensors.flatMap(sensor => [
                     {
                         deviceID: sensor.deviceID,
                         sensorName: "Temperatura",
                         value: sensor.temperature,
                         unit: "°C",
                         difference: 0,
-                        timestamp: sensor.timestamp,
+                        timestamp: formatDate(sensor.timestamp),
                         imagePath: "/temperature.png"
                     },
                     {
@@ -38,7 +39,7 @@ export function useEnvironmentSensors(devices: Device[]) {
                         value: sensor.humidity,
                         unit: "%",
                         difference: 0,
-                        timestamp: sensor.timestamp,
+                        timestamp: formatDate(sensor.timestamp),
                         imagePath: "/humidity.png"
                     }
                 ])

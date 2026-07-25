@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Device, Sensor } from "../types/dashboard";
 import { getSoilSensor } from "../services/SoilSensorService";
+import { formatDate } from "../utils/date";
 
 export function useSoilSensors(devices: Device[]) {
     const [sensors, setSensors] = useState<Sensor[]>([]);
@@ -11,25 +12,30 @@ export function useSoilSensors(devices: Device[]) {
         async function load() {
 
             try {
-                const sensors = await Promise.all(
+                const responses = await Promise.all(
                     devices.map(d => getSoilSensor(d.id))
                 );
-                const availableSensors = sensors.filter(sensor => sensor !== null);
+
+                const availableSensors = responses
+                    .filter(r => r !== null)
+                    .flat();
 
                 if (availableSensors.length === 0) {
                     setNoData(true);
                     return;
                 }
                 setSensors(
-                    sensors.map((sensor, index) => ({
-                        deviceID: devices[index].id,
-                        sensorName: "Humedad Suelo",
-                        value: sensor.value,
-                        unit: "RAW",
-                        difference: sensor.difference,
-                        timestamp: sensor.timestamp,
-                        imagePath: "/soil.png"
-                    }))
+                    availableSensors.flatMap(device =>
+                        device.sensors.map((sensor: { sensorIndex: number; moisture: any; }) => ({
+                            deviceID: device.deviceID,
+                            sensorName: `Humedad Suelo ${sensor.sensorIndex + 1}`,
+                            value: sensor.moisture,
+                            unit: "RAW",
+                            difference: 0,
+                            timestamp: formatDate(device.timestamp),
+                            imagePath: "/soil.png"
+                        }))
+                    )
                 );
             }
             catch {
