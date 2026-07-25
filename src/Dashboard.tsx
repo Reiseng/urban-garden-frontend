@@ -1,4 +1,5 @@
 import "./styles/Dashboard.css";
+import "./styles/DataState.css";
 import CropCard from "./components/CropCard";
 import DeviceCard from "./components/DeviceCard";
 import SensorCard from "./components/SensorCard";
