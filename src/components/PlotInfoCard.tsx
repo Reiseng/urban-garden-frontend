@@ -15,12 +15,9 @@ interface PlotInfoCardProps {
 }
 
 function PlotInfoCard({
-    id,
     name,
     location,
     area,
-    ActiveCrop,
-    devices
 }: PlotInfoCardProps) {
     return (
         <section className ="Plot-Info">

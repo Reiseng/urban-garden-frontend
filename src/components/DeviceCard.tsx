@@ -5,12 +5,11 @@ import { getDeviceStatus } from "../utils/deviceStatus";
 interface DeviceCardProps {
     compact: boolean;
     name: string;
-    status: string;
     id: string;
     lastSeenAt: string;
 }
 
-function DeviceCard({ compact, name, status, id, lastSeenAt }: DeviceCardProps) {
+function DeviceCard({ compact, name, id, lastSeenAt }: DeviceCardProps) {
     return (
             <div className={`DeviceCard ${compact ? "compact" : ""}`}>
             <div className="main-info">

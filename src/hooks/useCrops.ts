@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import type { Crop } from "../types/dashboard";
+
+// Local Crop type: moved here because ../types/dashboard does not export Crop
+type Crop = {
+    name: string;
+    plantingDate: string;
+    status: string;
+};
 
 export function useCrops() {
     const [crops, setCrops] = useState<Crop[]>([]);

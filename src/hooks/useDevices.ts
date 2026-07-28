@@ -16,7 +16,7 @@ export function useDevices() {
                         id: "123456",
                         name: "Dispositivo 1",
                         status: "Conectado",
-                        lastConnection: "01/02/2024 12:00"
+                        lastSeenAt: "01/02/2024 12:00"
                     }
                 ]);
             }
