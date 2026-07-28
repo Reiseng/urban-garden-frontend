@@ -1,7 +1,7 @@
 export async function getSoilSensor(deviceId: string) {
 
     const response = await fetch(
-        "http://localhost:5000/api/v1/devices/" + deviceId + "/sensors/soil/latest"
+        "https://urban-garden-api.onrender.com/api/v1/devices/" + deviceId + "/sensors/soil/latest"
     );
     if (response.status === 204) {
         return null;
