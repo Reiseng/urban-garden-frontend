@@ -24,17 +24,6 @@ export function useEnvironmentSensors(devices: Device[]) {
 
             try {
 
-                /*
-                 * Últimas 24 horas
-                 */
-                const to = new Date();
-
-                const from = new Date(
-                    to.getTime() -
-                    24 * 60 * 60 * 1000
-                );
-
-
                 const results = await Promise.all(
 
                     devices.map(async device => {

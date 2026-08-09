@@ -9,9 +9,7 @@ import NewPlotCard from '../components/NewPlotCard';
 function Dashboard() {
     const navigate = useNavigate();
     const {
-        userplotInfo,
-        loading,
-        error
+        userplotInfo
     } = useUserPlots();
 
     const plots = Array.isArray(userplotInfo) ? userplotInfo : [];
