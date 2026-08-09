@@ -1,14 +1,9 @@
-.Plot-Info {
-    display: flex;
-    justify-content: space-evenly;
-}
-.image-container{
-    margin-right: 10px;
-    align-items: center;
-}
-.container-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+  .dashboard .plot-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    box-shadow:var(--shadow-sm); padding:22px; display:flex; flex-direction:column; gap:16px;
+    position:relative; overflow:hidden;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s;
+  }
+  .dashboard .plot-card::before{content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent, var(--green));}
+  .dashboard .plot-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:color-mix(in srgb, var(--accent, var(--green)) 30%, var(--border));}
+  .dashboard .plot-card button:hover {color: var(--green-hover);}

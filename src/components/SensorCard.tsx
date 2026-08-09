@@ -1,6 +1,11 @@
 import "../styles/SensorCard.css";
-import SensorGauge from "./SensorGauge";
+import { Droplets, Thermometer } from "lucide-react";
+import Sparkline from "./Sparkline";
 
+export interface SensorHistoryPoint {
+    value: number;
+    timestamp: string;
+}
 
 interface SensorCardProps {
     compact: boolean;
@@ -8,56 +13,56 @@ interface SensorCardProps {
     sensorName: string;
     value: number;
     unit: string;
-    difference?: number;
     timestamp: string;
-    imagePath: string;
+    imagePath?: string;
     sensorIndex?: number;
+    history?: SensorHistoryPoint[];
 }
+
 function SensorCard({
     compact,
-    deviceID,
     sensorName,
     value,
     unit,
-    timestamp,
-    sensorIndex
+    history = []
 }: SensorCardProps) {
-    var max = 0;
-    if (unit === "%") {
-        max = 100;
-    }
-    if (unit === "RAW") {
-        max = 4096;
-    }
-    if (unit === "°C") {
-        max = 60;
-    }
+
+    const isTemperature = unit === "°C";
+
     return (
-        <div className={`SensorCard ${compact ? "compact" : ""}`}>
-            <div className="main-info">
-                <div className="image-container">
-                    <SensorGauge
-                        value={value}
-                        max={max}
-                        unit={unit}
-                    />
+        <article
+            className={`sensor-card ${compact ? "compact" : ""}`}
+        >
+
+            <div className="sensor-top">
+
+                <div className="sensor-label">
+
+                    <span className="ic">
+                        {isTemperature ? (
+                            <Thermometer size={18} />
+                        ) : (
+                            <Droplets size={18} />
+                        )}
+                    </span>
+
+                    {sensorName}
+
                 </div>
 
-                <div className="info-container">
-                    <h3>{sensorName}</h3>
-                    <p>ID del dispositivo: {deviceID}</p>
+            </div>
 
-                    {sensorIndex !== undefined && (
-                        <p>Sensor #{sensorIndex}</p>
-                    )}
+            <div className="sensor-value-row">
+
+                <div className="sensor-value">
+                    {value} {unit}
                 </div>
+
+                <Sparkline data={history} />
+
             </div>
 
-            <div className="timestamp-info">
-                <p>Última lectura:</p>
-                <p>{timestamp}</p>
-            </div>
-        </div>
+        </article>
     );
 }
 

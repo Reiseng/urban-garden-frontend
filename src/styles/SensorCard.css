@@ -1,55 +1,17 @@
-.SensorCard{
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    text-align: center;
-    background-color: rgb(250, 250, 250);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.SensorCard.compact {
-    flex-direction: column;
-}
-.main-info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    margin-left: 20px;
-}
-.SensorCard.compact .main-info {
-    flex-direction: column;
-    gap: 0px;
-    margin-left: 0px;
-}
-.timestamp-info-info{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px;
-}
-.SensorCard.compact .timestamp-info {
-    flex-direction: column;
-    margin: 0px;
-}
-.SensorCard.compact .timestamp-info p {
-    margin: 5px;
-}
-.sensors-container {
+  .PlotDashboard .sensor-grid-1{
     display: grid;
-    gap: 16px;
-}
-.sensors-1{
+    gap: 10px;
     grid-template-columns: 1fr;
-}
-.sensors-2 {
+  }
+  .PlotDashboard .sensor-grid-2{
+    display: grid;
+    gap: 10px;
     grid-template-columns: 1fr 1fr;
-}
-.sensors-3,
-.sensors-4,
-.sensors-5 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+  }
+  .PlotDashboard .sensor-grid-3,
+  .PlotDashboard .sensor-grid-4,
+  .PlotDashboard .sensor-grid-5{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }

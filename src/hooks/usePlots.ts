@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-import type { PlotInfo} from "../types/dashboard";
+import type { PlotInfo} from "../types/plotinfo";
 import { getPlot } from "../services/PlotService";
 
-export function usePlots() {
+export function usePlots(plotId: string) {
     const [plotInfo, setPlotInfo] = useState<PlotInfo | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
+
+
         async function load() {
             try {
-                const plot = await getPlot();
+                const plot = await getPlot(plotId);
                 setPlotInfo({
                     id: plot.id,
                     name: plot.name,
-                    location: `${plot.location.state}, ${plot.location.city}`,
-                    area: plot.size,
-                    activeCrops: plot.plantedCrops,
+                    location: plot.location,
+                    size: plot.size,
+                    plantedCrops: plot.plantedCrops,
                     devices: plot.devices
                 });
             }

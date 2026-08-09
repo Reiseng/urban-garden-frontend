@@ -1,7 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export async function getSoilSensor(deviceId: string) {
 
     const response = await fetch(
-        "https://urban-garden-api.onrender.com/api/v1/devices/" + deviceId + "/sensors/soil/latest"
+        `${API_URL}/devices/${deviceId}/sensors/soil/latest`
     );
     if (response.status === 204) {
         return null;

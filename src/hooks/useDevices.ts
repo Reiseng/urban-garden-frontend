@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Device } from "../types/dashboard";
+import type { Device } from "../types/devices";
 
 export function useDevices() {
     const [devices, setDevices] = useState<Device[]>([]);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Device, Sensor } from "../types/dashboard";
+import type { Device } from "../types/devices";
+import type { Sensor } from "../types/sensor";
 import { getSoilSensor } from "../services/SoilSensorService";
-import { formatDate } from "../utils/date";
 
 export function useSoilSensors(devices: Device[]) {
     const [sensors, setSensors] = useState<Sensor[]>([]);
@@ -26,13 +26,14 @@ export function useSoilSensors(devices: Device[]) {
                 }
                 setSensors(
                     availableSensors.flatMap(device =>
-                        device.sensors.map((sensor: { sensorIndex: number; moisture: any; }) => ({
+                        device.sensors.map((sensor: any) => ({
                             deviceID: device.deviceID,
+                            sensorIndex: sensor.sensorIndex,
                             sensorName: `Humedad Suelo ${sensor.sensorIndex + 1}`,
                             value: sensor.moisture,
-                            unit: "RAW",
+                            unit: "%",
                             difference: 0,
-                            timestamp: formatDate(device.timestamp),
+                            timestamp: device.timestamp,
                             imagePath: "/soil.png"
                         }))
                     )

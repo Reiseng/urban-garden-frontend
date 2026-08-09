@@ -1,15 +1,19 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function getPlot(plotId : string) {
+export async function getUserPlots() {
 
     const response = await fetch(
-        `${API_URL}/plots/${plotId}`
+        `${API_URL}/plots/`
     );
+
     if (response.status === 204) {
         return null;
     }
+
     if (!response.ok) {
-        throw new Error("Error al obtener la información de la parcela: " + response.statusText);
+        throw new Error(
+            "Error al obtener las parcelas: " + response.statusText
+        );
     }
 
     return await response.json();

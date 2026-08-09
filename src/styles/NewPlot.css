@@ -1,0 +1,499 @@
+.np-page {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.np-page * {
+  box-sizing: border-box;
+}
+.np-page svg {
+  display: block;
+}
+
+.np-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 32px);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.np-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.np-brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(155deg, var(--green), var(--green-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--green) 40%, transparent);
+}
+.np-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(155deg, #7cb342, #2e7d32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.np-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 30px) clamp(16px, 4vw, 32px) 90px;
+}
+
+.np-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-2);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+.np-back svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-2);
+}
+.np-back:hover {
+  color: var(--green);
+}
+.np-back:hover svg {
+  stroke: var(--green);
+}
+
+.np-title-block {
+  margin-bottom: clamp(24px, 4vw, 34px);
+}
+.np-title-block h1 {
+  font-size: clamp(23px, 3vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.np-title-block p {
+  color: var(--text-2);
+  font-size: 15px;
+}
+
+/* =========================================================
+   Two-column layout: form + live preview
+   ========================================================= */
+.np-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* =========================================================
+   Form card
+   ========================================================= */
+.np-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: clamp(20px, 4vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.np-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.np-field label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+}
+.np-field .np-optional {
+  font-weight: 500;
+  color: var(--text-2);
+}
+.np-field input[type="text"],
+.np-field input[type="number"],
+.np-field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14.5px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.np-field input::placeholder,
+.np-field textarea::placeholder {
+  color: color-mix(in srgb, var(--text-2) 80%, transparent);
+}
+.np-field input:focus,
+.np-field textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 18%, transparent);
+}
+.np-field textarea {
+  resize: vertical;
+  min-height: 84px;
+  line-height: 1.5;
+}
+
+.np-field-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+.np-input-suffix {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding-right: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.np-input-suffix:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 18%, transparent);
+}
+.np-input-suffix input {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  flex: 1;
+}
+.np-input-suffix span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+/* Type selector */
+.np-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.np-type-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.np-type-option:hover {
+  border-color: color-mix(in srgb, var(--green) 40%, var(--border));
+}
+.np-type-option .np-type-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.np-type-option .np-type-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-2);
+  transition: stroke 0.15s;
+}
+.np-type-option.active {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green);
+}
+.np-type-option.active .np-type-icon {
+  background: var(--green);
+  border-color: var(--green);
+}
+.np-type-option.active .np-type-icon svg {
+  stroke: #fff;
+}
+
+/* Actions */
+.np-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.btn-ghost {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  border-color: var(--text-2);
+}
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--green) 45%, transparent);
+}
+.btn-primary:hover {
+  background: var(--green-hover);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.np-preview {
+  position: sticky;
+  top: 90px;
+}
+
+.np-preview-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.np-preview-hint b{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.np-plot-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.np-plot-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green);
+}
+.np-plot-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.np-plot-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-soft);
+}
+.np-plot-icon svg {
+  width: 21px;
+  height: 21px;
+  stroke: var(--green);
+}
+.np-status-dot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.np-status-off {
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.np-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.np-plot-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.np-plot-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-2);
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.np-plot-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.np-plot-meta svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--text-2);
+  flex-shrink: 0;
+}
+.np-plot-stats {
+  display: flex;
+  gap: 22px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.np-plot-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.np-plot-stats .n {
+  font-size: 17px;
+  font-weight: 700;
+}
+.np-plot-stats .l {
+  font-size: 11px;
+  color: var(--text-2);
+  font-weight: 600;
+}
+.np-plot-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.np-activity {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.np-activity b {
+  color: var(--text);
+  font-weight: 600;
+}
+.np-open-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
+}
+.np-open-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--green);
+}
+.np-open-link.np-disabled {
+  color: var(--text-2);
+  opacity: 0.6;
+}
+.np-open-link.np-disabled svg {
+  stroke: var(--text-2);
+}
+
+.np-preview-hint {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.5;
+  text-align: center;
+}
+.np-preview-hint b {
+  color: var(--text);
+}
+
+@media (max-width: 980px) {
+  .np-layout {
+    grid-template-columns: 1fr;
+  }
+  .np-preview {
+    position: static;
+    max-width: 420px;
+  }
+}
+@media (max-width: 680px) {
+  .np-header {
+    padding: 12px 16px;
+  }
+  .np-main {
+    padding: 18px 16px 70px;
+  }
+  .np-field-row {
+    grid-template-columns: 1fr;
+  }
+  .np-type-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .np-actions {
+    flex-direction: column-reverse;
+  }
+  .np-actions .btn {
+    width: 100%;
+  }
+  .np-preview {
+    max-width: 100%;
+  }
+}
+@media (max-width: 380px) {
+  .np-form-card {
+    padding: 18px;
+  }
+}
