@@ -48,24 +48,23 @@ export function lastUpdate(date: string | null): string {
 export function getLatestTimestamp(
     sensors: { timestamp: string }[]
 ): string | null {
+
     if (sensors.length === 0) {
         return null;
     }
 
-    return sensors.reduce((latest, sensor) => {
-        const latestDate = new Date(latest);
-        const sensorDate = new Date(sensor.timestamp);
+    const validTimestamps = sensors
+        .map(sensor => new Date(sensor.timestamp))
+        .filter(date => !isNaN(date.getTime()));
 
-        if (isNaN(sensorDate.getTime())) {
-            return latest;
-        }
+    if (validTimestamps.length === 0) {
+        return null;
+    }
 
-        if (isNaN(latestDate.getTime())) {
-            return sensor.timestamp;
-        }
+    const latest = validTimestamps.reduce(
+        (latest, current) =>
+            current > latest ? current : latest
+    );
 
-        return sensorDate > latestDate
-            ? sensor.timestamp
-            : latest;
-    }, sensors[0].timestamp);
+    return latest.toISOString();
 }

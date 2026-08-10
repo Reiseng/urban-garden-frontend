@@ -57,9 +57,9 @@ function PlotDashboard() {
         environmentSensors.slice(0, 5);
     const visibleSoilSensors =
         soilSensors.slice(0, 5);
-    const latestSoilUpdate = getLatestTimestamp(visibleSoilSensors);
+    const latestSoilUpdate = getLatestTimestamp(soilSensors);
     const latestEnvironmentUpdate = getLatestTimestamp(
-        visibleEnvironmentSensors
+        environmentSensors
     );
     return (
         
