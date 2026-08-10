@@ -24,7 +24,7 @@ function DeviceCard({
         <div>
           <div className="device-name">{name}</div>
           <div className={`device-status ${
-                        online ? "online" : "offline"
+                        online ? "on" : "offline"
                     }`}><span className="dot"/>{getDeviceStatus(lastSeenAt)}</div>
           <div className="device-last">Última conexión: {formatLastSeen(lastSeenAt)}</div>
         </div>

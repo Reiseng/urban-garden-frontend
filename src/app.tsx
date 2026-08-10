@@ -11,7 +11,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/plot/:plotId" element={<PlotDashboard />} />
             <Route path="/plot/new" element={<NewPlot/>}></Route>
-            <Route path="/plot/:plotId/edit"></Route>
+            <Route path="/plot/:plotId/edit" element={<NewPlot/>}></Route>
             <Route path="/plot/:plotId/crops"></Route>
             <Route path="/plot/:plotId/devices"></Route>
             <Route path="/plot/:plotId/devices/new"></Route>

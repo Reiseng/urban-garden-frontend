@@ -55,7 +55,7 @@
   .PlotDashboard .btn-primary:hover{background:var(--green-hover); color:#fff;}
 
   /* SUMMARY */
-  .PlotDashboard .summary{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:clamp(32px,5vw,48px);}
+  .PlotDashboard .summary{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin-bottom:clamp(32px,5vw,48px);}
   .PlotDashboard .summary-card{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:14px;}
   .PlotDashboard .summary-card .ic{width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
   .PlotDashboard .summary-card .ic svg{width:17px; height:17px;}
