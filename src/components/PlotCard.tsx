@@ -3,6 +3,7 @@ import { Link} from "react-router-dom";
 import "../styles/PlotInfoCard.css";
 import type { PlotInfo } from "../types/plotinfo";
 import { getLatestTimestamp, lastUpdate } from "../utils/date";
+import { getPlotStatus } from "../utils/plotstatus";
 
 function PlotCard({
     id,
@@ -13,17 +14,35 @@ function PlotCard({
     devices
 }: PlotInfo) {
 const latestActivity = getLatestTimestamp(devices, device=> device.lastSeenAt);
+    const latestDeviceActivity = getLatestTimestamp(
+        devices,
+        device => device.lastSeenAt
+    );
+
+    const plotStatus = getPlotStatus(latestDeviceActivity);
     return (
         <div className="plot-card">
+
             <div className="plot-top">
+
                 <div className="plot-icon">
                     <Home size={20} />
                 </div>
 
-                <div className="status-dot status-connected">
+                <div
+                    className={`status-dot ${
+                        plotStatus === "Operativo"
+                            ? "status-connected"
+                            : "status-offline"
+                    }`}
+                >
                     <span className="dot"></span>
-                    Conectado
+
+                    {plotStatus === "Operativo"
+                        ? "Conectado"
+                        : "Sin conexión"}
                 </div>
+
             </div>
 
             <div>
