@@ -2,6 +2,7 @@ import { ArrowRight, Home, MapPin } from "lucide-react";
 import { Link} from "react-router-dom";
 import "../styles/PlotInfoCard.css";
 import type { PlotInfo } from "../types/plotinfo";
+import { getLatestTimestamp, lastUpdate } from "../utils/date";
 
 function PlotCard({
     id,
@@ -11,7 +12,7 @@ function PlotCard({
     plantedCrops,
     devices
 }: PlotInfo) {
-
+const latestActivity = getLatestTimestamp(devices, device=> device.lastSeenAt);
     return (
         <div className="plot-card">
             <div className="plot-top">
@@ -63,11 +64,15 @@ function PlotCard({
             </div>
 
             <div className="plot-footer">
-                <div className="activity">
-                    Última actividad
-                    <br />
-                    <b>...</b>
-                </div>
+            <div className="activity">
+                Última actividad
+                <br />
+                <b>
+                    {latestActivity
+                        ? lastUpdate(latestActivity)
+                        : "Sin actividad"}
+                </b>
+            </div>
 
                 <Link
                     to={`/plot/${id}`}

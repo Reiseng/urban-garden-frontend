@@ -55,9 +55,9 @@ function PlotDashboard() {
     const visiblecrops = plotInfo.plantedCrops.slice(0, 5);
     const visibleEnvironmentSensors = getLatestSensors(environmentSensors, 5);
     const visibleSoilSensors = getLatestSensors(soilSensors, 5);
-    const latestSoilUpdate = getLatestTimestamp(soilSensors);
+    const latestSoilUpdate = getLatestTimestamp(soilSensors, soilSensors=> soilSensors.timestamp);
     const latestEnvironmentUpdate = getLatestTimestamp(
-        environmentSensors
+        environmentSensors, environmentSensors=> environmentSensors.timestamp
     );
     return (
         

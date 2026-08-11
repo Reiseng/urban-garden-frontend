@@ -45,16 +45,15 @@ export function lastUpdate(date: string | null): string {
 
     return `Actualizado hace ${diffDays} día${diffDays !== 1 ? "s" : ""}`;
 }
-export function getLatestTimestamp(
-    sensors: { timestamp: string }[]
+export function getLatestTimestamp<T>(
+    items: T[],
+    getTimestamp: (item: T) => string | null | undefined
 ): string | null {
 
-    if (sensors.length === 0) {
-        return null;
-    }
-
-    const validTimestamps = sensors
-        .map(sensor => new Date(sensor.timestamp))
+    const validTimestamps = items
+        .map(getTimestamp)
+        .filter((date): date is string => !!date)
+        .map(date => new Date(date))
         .filter(date => !isNaN(date.getTime()));
 
     if (validTimestamps.length === 0) {
