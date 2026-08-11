@@ -8,7 +8,6 @@ import {
     getEnvironmentSensorHistory
 } from "../services/EnviromentSensorService";
 
-import { formatDate } from "../utils/date";
 
 export function useEnvironmentSensors(devices: Device[]) {
 
