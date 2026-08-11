@@ -61,6 +61,11 @@ function PlotDashboard() {
     const latestEnvironmentUpdate = getLatestTimestamp(
         environmentSensors
     );
+
+    console.log("latestSoilUpdate:", latestSoilUpdate);
+    console.log("latestEnvironmentUpdate:", latestEnvironmentUpdate);
+    console.log("soilSensors:", soilSensors);
+    console.log("environmentSensors:", environmentSensors);
     return (
         
         <div className="PlotDashboard">
