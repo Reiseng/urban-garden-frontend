@@ -134,9 +134,7 @@ export function useEnvironmentSensors(devices: Device[]) {
                             difference: 0,
 
                             timestamp:
-                                formatDate(
-                                    latest.timestamp
-                                ),
+                                    latest.timestamp,
 
                             imagePath:
                                 "/humidity.png",

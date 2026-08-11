@@ -11,7 +11,7 @@ import { useEnvironmentSensors } from "../hooks/useEnvironmentSensors";
 import { useSoilSensors } from "../hooks/useSoilSensors";
 import PlotHeader from "../components/PlotHeader";
 import SoilSensorCard from "../components/SoilSensorCard";
-import { getLatestTimestamp, lastUpdate } from "../utils/date";
+import { getLatestSensors, getLatestTimestamp, lastUpdate } from "../utils/date";
 import { useParams } from "react-router-dom";
 
 function PlotDashboard() {
@@ -53,19 +53,12 @@ function PlotDashboard() {
     }
     const visibleDevices = plotInfo.devices.slice(0, 5);
     const visiblecrops = plotInfo.plantedCrops.slice(0, 5);
-    const visibleEnvironmentSensors =
-        environmentSensors.slice(0, 5);
-    const visibleSoilSensors =
-        soilSensors.slice(0, 5);
+    const visibleEnvironmentSensors = getLatestSensors(environmentSensors, 5);
+    const visibleSoilSensors = getLatestSensors(soilSensors, 5);
     const latestSoilUpdate = getLatestTimestamp(soilSensors);
     const latestEnvironmentUpdate = getLatestTimestamp(
         environmentSensors
     );
-
-    console.log("latestSoilUpdate:", latestSoilUpdate);
-    console.log("latestEnvironmentUpdate:", latestEnvironmentUpdate);
-    console.log("soilSensors:", soilSensors);
-    console.log("environmentSensors:", environmentSensors);
     return (
         
         <div className="PlotDashboard">

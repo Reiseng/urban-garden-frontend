@@ -68,3 +68,15 @@ export function getLatestTimestamp(
 
     return latest.toISOString();
 }
+export function getLatestSensors<T extends { timestamp: string }>(
+    sensors: T[],
+    limit: number
+): T[] {
+    return [...sensors]
+        .sort(
+            (a, b) =>
+                new Date(b.timestamp).getTime() -
+                new Date(a.timestamp).getTime()
+        )
+        .slice(0, limit);
+}
